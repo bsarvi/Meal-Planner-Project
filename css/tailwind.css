@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply px-4 py-2  rounded-full text-lg font-semibold active:scale-95 transition-all duration-300 text-rose-50;
+}
+
+li {
+  @apply flex gap-2 items-center text-xl font-medium;
+}
+
+.input-group {
+  @apply flex flex-col gap-1;
+}
+input,
+select {
+  @apply w-full px-4 py-2 outline-none rounded-lg border border-slate-400 text-slate-950;
+}
+label {
+  @apply text-sm font-black text-slate-600;
+}
+option {
+  @apply text-slate-900;
+}
+.required {
+  @apply text-red-600;
+}
+
+#toastsContainer {
+  @apply absolute bottom-4 left-4 flex gap-4 flex-col z-50;
+}
+
+.toast {
+  @apply text-white p-5 relative w-fit rounded-lg;
+  transform: translateX(-100%); /* Start with toast offscreen to the left */
+  transition: transform 0.5s;
+}
+.toast.closing {
+  transform: translateX(-100%); /* Slide out to the left when closing */
+}
+
+.successToast {
+  @apply bg-green-600;
+}
+
+.errorToast {
+  @apply bg-red-500;
+}
+
+.closeToastBtn {
+  @apply absolute top-[2px] right-[2px] text-[1rem] p-[5px];
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

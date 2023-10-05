@@ -1,0 +1,14 @@
+{
+  "name": "meal-planner-project---javascript-project---0axwwjg1n3nx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./css/tailwind.css -o ./css/output.css --watch"
+  },
+  "author": "Bharat Sarvi",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

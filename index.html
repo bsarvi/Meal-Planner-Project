@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@200;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- fontawosme icons cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Custome Css -->
+    <link href="./css/output.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col font-lato relative">
+    <!-- header -->
+    <header class="bg-blue-900">
+      <nav
+        class="container m-auto h-16 px-4 flex justify-between items-center text-blue-50"
+      >
+        <h1 class="text-2xl font-bold font-oswald cursor-pointer">
+          <a href="/">Meal Planner</a>
+        </h1>
+        <button id="openModal" class="btn bg-blue-700/75 hover:bg-blue-700/50">
+          Generate Meals
+        </button>
+      </nav>
+    </header>
+
+    <!-- Model -->
+    <aside
+      id="modal"
+      class="z-40 hidden fixed right-0 top-0 h-screen w-96 bg-blue-50 transform translate-x-full sm:translate-x-0 sm:w-96 transition-transform duration-300 ease-in-out rounded-lg backdrop-blur-md shadow-inner border border-blue-200"
+    >
+      <div class="p-4 text-blue-900">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl">Calculate BMR</h2>
+          <button
+            id="closeModal"
+            class="flex jc items-center font-2xl hover:bg-blue-400 p-4"
+          >
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <form class="flex flex-col gap-4" id="bmr-form">
+          <div class="input-group">
+            <label for="weight"
+              >Weight (in KG) <span class="required">*</span></label
+            >
+
+            <input
+              id="weight"
+              weight
+              placeholder="Enter weight"
+              name="weight"
+              type="number"
+              value="74"
+            />
+          </div>
+          <div class="input-group">
+            <label for="height"
+              >Height (in CM) <span class="required">*</span></label
+            >
+            <input
+              id="height"
+              placeholder="Enter height"
+              name="age"
+              type="number"
+              value="155"
+            />
+          </div>
+          <div class="input-group">
+            <label for="age">Age <span class="required">*</span></label>
+            <input
+              id="age"
+              placeholder="Enter age"
+              name="age"
+              type="number"
+              value="26"
+            />
+          </div>
+          <div class="input-group">
+            <label for="'gender">Gender <span class="required">*</span></label>
+            <select id="gender" name="age">
+              <!-- <option value="">Select gender</option> -->
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="activity"
+              >Activity Level <span class="required">*</span></label
+            >
+            <select id="activity" name="activity-level">
+              <!-- <option value="">Select activity level</option> -->
+              <option value="light">Light</option>
+              <option value="moderate">Moderate</option>
+              <option value="active">Active</option>
+            </select>
+          </div>
+          <button class="btn bg-blue-900 hover:bg-blue-900/90" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- onboard screen  -->
+    <main
+      id="onboard"
+      class="flex flex-col justify-center items-center gap-4 flex-1 text-blue-900 text-center container m-auto px-4"
+    >
+      <h1 class="text-5xl font-light">Welcome to Meal Planner</h1>
+      <p class="text-xl font-bold text-slate-500 max-w-md">
+        Managing your daily meals has never been easier. Say goodbye to the
+        hassle of finding recipes and meal planning.
+      </p>
+      <button id="openModal" class="btn bg-blue-900 hover:bg-blue-900/90">
+        Get Started
+      </button>
+    </main>
+
+    <!-- meals Details screen -->
+    <main id="meals" class="container m-auto px-4 flex-1 my-8 hidden">
+      <section
+        id="meals-card-wrapper"
+        class="flex flex-wrap justify-center items-center gap-4"
+      ></section>
+
+      <section id="tabs-wrapper" class="justify-center hidden min-h-screen">
+        <div class="bg-slate-200 p-4 w-full max-w-4xl">
+          <select
+            id="tabs"
+            name="tabs"
+            class="max-w-sm uppercase font-black text-slate-600"
+          >
+            <option value="ingredients">Ingredients</option>
+            <option value="steps">Steps</option>
+            <option value="equipments">Equipment</option>
+          </select>
+
+          <div class="m-4">
+            <ul
+              id="ingredients"
+              class="flex flex-col gap-4 text-slate-950"
+            ></ul>
+
+            <ul id="steps" class="flex-col gap-4 text-slate-950 hidden"></ul>
+
+            <div
+              id="equipments"
+              class="justify-center items-center py-4 hidden"
+            >
+              <p class="text-xl font-light">No Eqipment Listed</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer
+      class="bg-blue-900 h-10 text-blue-50 flex justify-center items-center"
+    >
+      <p class="text-lg">© 2023 Meal Planner</p>
+    </footer>
+
+    <div id="toastsContainer"></div>
+
+    <script type="module" src="./js/App.js"></script>
+  </body>
+</html>
